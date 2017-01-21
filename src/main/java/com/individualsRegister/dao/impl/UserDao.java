@@ -67,5 +67,20 @@ public class UserDao implements IDao<UserDO, Integer>
 	{
 		 Query query = entityManager.createQuery("SELECT e FROM " + "UserDO" + " e");
 		    return (List<UserDO>) query.getResultList();
+	}
+
+	@Override
+	public Integer tableSize()
+	{
+		
+		Query query = entityManager.createQuery ("SELECT count(udo) FROM UserDO udo");
+		
+		return (Integer) query.getSingleResult ();
+	}
+	
+	@Override
+	public List<UserDO> getAllUsersIterable(int length, int offset)
+	{		
+		 return entityManager.createQuery("from UserDO m", UserDO.class).setFirstResult(offset).setMaxResults(length).getResultList();
 	}	
 }

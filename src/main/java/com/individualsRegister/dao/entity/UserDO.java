@@ -1,5 +1,6 @@
 package com.individualsRegister.dao.entity;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -24,6 +25,16 @@ public class UserDO
 	private String fnsid;
 	@Column(name = "birthDate")
 	private Date birthDate;
+	@Column(name = "fnsidRequestId")
+	private BigInteger fnsidRequestId;
+	public BigInteger getFnsidRequestId()
+	{
+		return fnsidRequestId;
+	}
+	public void setFnsidRequestId(BigInteger fnsidRequestId)
+	{
+		this.fnsidRequestId = fnsidRequestId;
+	}
 	public Integer getId()
 	{
 		return id;

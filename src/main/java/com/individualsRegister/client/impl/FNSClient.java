@@ -1,6 +1,8 @@
 
 package com.individualsRegister.client.impl;
 
+import java.math.BigInteger;
+
 import javax.xml.bind.JAXBElement;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,27 +16,33 @@ import ru.gosuslugi.smev.rev111111.GetResponseType;
 import ru.gosuslugi.smev.rev111111.GetType;
 import ru.gosuslugi.smev.rev111111.QueryResponseType;
 import ru.gosuslugi.smev.rev111111.QueryType;
+import unisoft.ws.innfiodr.query.rs.Документ;
 
 @Service
-public class FNSClient implements IFNSClient
+public class FNSClient implements IFNSClient 
 {
 
 	@Autowired
 	@Qualifier("fnsServiceClient")
 	private WebServiceOperations fnsServiceClient;
 
-	public GetResponseType getINNFLFIODR(GetType request)
+	public String getINNFLFIODR(GetType request)
 	{
 		unisoft.ws.ObjectFactory objectFactory = new unisoft.ws.ObjectFactory();
 		GetResponseType response = sendRequest(objectFactory.createGetINNFLFIODR(request), fnsServiceClient);
-		return response;
+		unisoft.ws.innfiodr.get.rs.Документ документ = ((unisoft.ws.innfiodr.get.rs.Документ) response.getMessageData().getAppData().getAny().get(0));
+		
+		
+		return документ.getИННФЛ();
 	}
 	
-	public QueryResponseType requestINNFLFIODR(QueryType request)
+	public BigInteger requestINNFLFIODR(QueryType request)
 	{
 		unisoft.ws.ObjectFactory objectFactory = new unisoft.ws.ObjectFactory();
 		QueryResponseType response = sendRequest(objectFactory.createQueryINNFLFIODR(request), fnsServiceClient);
-		return response;
+		Документ документ = ((unisoft.ws.innfiodr.query.rs.Документ) response.getMessageData().getAppData().getAny().get(0));
+		BigInteger requestId = документ.getИдЗапросФ();
+		return requestId;
 	}
 
 	@SuppressWarnings("unchecked")

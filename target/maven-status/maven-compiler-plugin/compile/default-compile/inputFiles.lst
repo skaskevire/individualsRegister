@@ -7,6 +7,7 @@ D:\individualsRegister\individualsRegister\src\main\java\ru\gosuslugi\smev\rev11
 D:\individualsRegister\individualsRegister\src\main\java\unisoft\ws\innfiodr\query\rs\ObjectFactory.java
 D:\individualsRegister\individualsRegister\src\main\java\org\w3\_2004\_08\xop\include\Include.java
 D:\individualsRegister\individualsRegister\src\main\java\com\individualsRegister\service\impl\IndividualsRegisterService.java
+D:\individualsRegister\individualsRegister\src\main\java\com\individualsRegister\job\IFnsIdUpdateJob.java
 D:\individualsRegister\individualsRegister\src\main\java\unisoft\ws\innfiodr\get\rq\Документ.java
 D:\individualsRegister\individualsRegister\src\main\java\unisoft\ws\innfiodr\query\rq\Документ.java
 D:\individualsRegister\individualsRegister\src\main\java\com\individualsRegister\client\IFNSClient.java
@@ -46,4 +47,5 @@ D:\individualsRegister\individualsRegister\src\main\java\com\individualsRegister
 D:\individualsRegister\individualsRegister\src\main\java\com\individualsRegister\dao\entity\UserDO.java
 D:\individualsRegister\individualsRegister\src\main\java\ru\gosuslugi\smev\rev111111\QueryType.java
 D:\individualsRegister\individualsRegister\src\main\java\ru\gosuslugi\smev\rev111111\GetResponseType.java
+D:\individualsRegister\individualsRegister\src\main\java\com\individualsRegister\job\FnsIdUpdateJob.java
 D:\individualsRegister\individualsRegister\src\main\java\com\individualsRegister\convert\impl\UserDOConverter.java

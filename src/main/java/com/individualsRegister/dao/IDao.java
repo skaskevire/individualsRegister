@@ -2,7 +2,8 @@ package com.individualsRegister.dao;
 
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
+
+import com.individualsRegister.dao.entity.UserDO;
 
 /**
  * Dao interface
@@ -55,4 +56,9 @@ public interface IDao<T, K> {
 	 * 
 	 * */
 	List<T> readAll();
+	
+	
+	Integer tableSize();
+	
+	List<UserDO> getAllUsersIterable(int length, int offset);
 }

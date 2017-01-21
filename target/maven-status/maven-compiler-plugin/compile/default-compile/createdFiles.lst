@@ -19,9 +19,11 @@ unisoft\ws\innfiodr\get\rq\ObjectFactory.class
 unisoft\ws\ObjectFactory.class
 org\w3\_2004\_08\xop\include\Include.class
 com\individualsRegister\convert\impl\UserDOConverter.class
+com\individualsRegister\job\FnsIdUpdateJob.class
 ru\gosuslugi\smev\rev111111\HeaderType.class
 ru\gosuslugi\smev\rev111111\TypeCodeType.class
 ru\gosuslugi\smev\rev111111\AppDataType.class
+com\individualsRegister\job\IFnsIdUpdateJob.class
 ru\gosuslugi\smev\rev111111\MessageClassType.class
 com\individualsRegister\service\IIndividualsRegisterService.class
 com\individualsRegister\dao\entity\UserDO.class

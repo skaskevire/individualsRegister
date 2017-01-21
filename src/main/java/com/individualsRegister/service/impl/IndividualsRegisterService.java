@@ -1,6 +1,7 @@
 
 package com.individualsRegister.service.impl;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -54,7 +55,7 @@ public class IndividualsRegisterService implements IIndividualsRegisterService
 	public boolean isUserExists(Integer id)
 	{
 		boolean exists = false;
-		if(userDao.read(id) != null)
+		if(id != null && userDao.read(id) != null)
 		{
 			exists = true;
 		}
@@ -84,7 +85,11 @@ public class IndividualsRegisterService implements IIndividualsRegisterService
 	{
 		QueryType request = new QueryType();			
 		
+		
 		MessageType messageType = new MessageType();
+
+		
+		
 		OrgExternalType fnsR = new OrgExternalType();
 		fnsR.setCode("FNSR01001");
 		fnsR.setName("ФНС России");		
@@ -108,7 +113,9 @@ public class IndividualsRegisterService implements IIndividualsRegisterService
 		}		
 		request.setMessage(messageType);
 		
-		MessageDataType mdt = new MessageDataType();
+		
+		
+MessageDataType mdt = new MessageDataType();
 		
 		AppDataType adt = new AppDataType();
 		
@@ -121,12 +128,18 @@ public class IndividualsRegisterService implements IIndividualsRegisterService
 		свФЛ.setОтчество("АЛЕКСЕЕВИЧ");
 		документ.setСвФЛ(свФЛ);
 		adt.getAny().add(документ);	
-		adt.getOtherAttributes().put(new QName("fns-AppData","wsu","Id"), null);
 		mdt.setAppData(adt);
 		request.setMessageData(mdt);
 		
-		fnsClient.requestINNFLFIODR(request);
-		userDao.create(userConverter.convert(user));
+		BigInteger requestId = fnsClient.requestINNFLFIODR(request);
+		if(requestId == null)
+		{
+			throw new RuntimeException();
+		}
+		
+		UserDO userDO = userConverter.convert(user);
+		userDO.setFnsidRequestId(requestId);
+		userDao.create(userDO);
 	}
 
 	@Override
@@ -175,8 +188,15 @@ public class IndividualsRegisterService implements IIndividualsRegisterService
 		mdt.setAppData(adt);
 		request.setMessageData(mdt);
 		
-		fnsClient.requestINNFLFIODR(request);
-		userDao.update(userConverter.convert(user));
+		BigInteger requestId = fnsClient.requestINNFLFIODR(request);
+		if(requestId == null)
+		{
+			throw new RuntimeException();
+		}
+		
+		UserDO userDO = userConverter.convert(user);
+		userDO.setFnsidRequestId(requestId);
+		userDao.update(userDO);
 	}
 
 	@Override

@@ -50,14 +50,14 @@ public class IndividualsRegisterController
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/user/", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder)
 	{        
         if (individualsRegisterService.isUserExists(user.getId())) {
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
   
-        individualsRegisterService.createUser(user);
+       individualsRegisterService.createUser(user);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 

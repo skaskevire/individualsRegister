@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class User
 {
-	private int id;
+	private Integer id;
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -61,7 +61,7 @@ public class User
 		this.birthDate = birthDate;
 	}
 
-	public int getId()
+	public Integer getId()
 	{
 		return id;
 	}
