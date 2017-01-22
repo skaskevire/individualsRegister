@@ -17,7 +17,7 @@ public class UserConverter implements IConverter<User, UserDO>
 		target.setBirthDate(source.getBirthDate());
 		target.setFirstName(source.getFirstName());
 		target.setId(source.getId());
-		target.setFnsid(source.getINNFLFIODR());
+		target.setFnsid(source.getFnsId());
 		target.setLastName(source.getLastName());
 		target.setMiddleName(source.getMiddleName());
 		return target;

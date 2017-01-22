@@ -8,7 +8,7 @@ public class User
 	private String firstName;
 	private String middleName;
 	private String lastName;
-	private String INNFLFIODR;
+	private String fnsId;
 	private Date birthDate;
 
 	public String getFirstName()
@@ -41,14 +41,14 @@ public class User
 		this.lastName = lastName;
 	}
 
-	public String getINNFLFIODR()
+	public String getFnsId()
 	{
-		return INNFLFIODR;
+		return fnsId;
 	}
 
-	public void setINNFLFIODR(String iNNFLFIODR)
+	public void setFnsId(String fnsId)
 	{
-		INNFLFIODR = iNNFLFIODR;
+		this.fnsId = fnsId;
 	}
 
 	public Date getBirthDate()
@@ -66,7 +66,7 @@ public class User
 		return id;
 	}
 
-	public void setId(int id)
+	public void setId(Integer id)
 	{
 		this.id = id;
 	}

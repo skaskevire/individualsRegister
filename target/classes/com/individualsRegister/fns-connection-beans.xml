@@ -62,6 +62,6 @@
      
     <task:scheduled-tasks scheduler="fnsIdUpdateScheduler">
         <task:scheduled ref="fnsIdUpdateJob" method="updateFnsIds"
-            cron="0/10 * * * * *"/>
+            cron="0 2/5 * * * *"/>
     </task:scheduled-tasks>
 </beans>

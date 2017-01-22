@@ -52,7 +52,8 @@ public class IndividualsRegisterController
 
 	@RequestMapping(value = "/user/", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder)
-	{        
+	{       
+
         if (individualsRegisterService.isUserExists(user.getId())) {
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
@@ -70,7 +71,7 @@ public class IndividualsRegisterController
 	        }
 		   currentUser.setBirthDate(user.getBirthDate());   
 		   currentUser.setFirstName(user.getFirstName());
-		   currentUser.setINNFLFIODR(user.getINNFLFIODR());
+		   currentUser.setFnsId(user.getFnsId());
 		   currentUser.setLastName(user.getLastName());
 		   currentUser.setMiddleName(user.getMiddleName());
 		   individualsRegisterService.updateUser(currentUser);
@@ -88,5 +89,10 @@ public class IndividualsRegisterController
         individualsRegisterService.deleteUser(id);
         return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
 	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+     public String getIndexPage() {
+         return "userManagement";
+     }
 
 }

@@ -5,6 +5,7 @@
   <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
   <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
   <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="var" path="M2_REPO/javax/servlet/jstl/1.2/jstl-1.2.jar"/>
   <classpathentry kind="var" path="M2_REPO/javax/validation/validation-api/1.1.0.CR1/validation-api-1.1.0.CR1.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
   <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.3.0/jackson-core-2.3.0.jar"/>
