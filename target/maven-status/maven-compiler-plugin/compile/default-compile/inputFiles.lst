@@ -15,6 +15,7 @@ D:\individualsRegister\individualsRegister\src\main\java\unisoft\ws\ObjectFactor
 D:\individualsRegister\individualsRegister\src\main\java\unisoft\ws\innfiodr\get\rs\package-info.java
 D:\individualsRegister\individualsRegister\src\main\java\ru\gosuslugi\smev\rev111111\AppDocumentType.java
 D:\individualsRegister\individualsRegister\src\main\java\ru\gosuslugi\smev\rev111111\BaseMessageType.java
+D:\individualsRegister\individualsRegister\src\main\java\com\individualsRegister\util\DateSerializer.java
 D:\individualsRegister\individualsRegister\src\main\java\ru\gosuslugi\smev\rev111111\OrgExternalType.java
 D:\individualsRegister\individualsRegister\src\main\java\org\w3\_2004\_08\xop\include\package-info.java
 D:\individualsRegister\individualsRegister\src\main\java\unisoft\ws\innfiodr\query\rq\ObjectFactory.java
@@ -30,6 +31,7 @@ D:\individualsRegister\individualsRegister\src\main\java\unisoft\ws\innfiodr\get
 D:\individualsRegister\individualsRegister\src\main\java\ru\gosuslugi\smev\rev111111\MessageDataType.java
 D:\individualsRegister\individualsRegister\src\main\java\com\individualsRegister\convert\impl\UserConverter.java
 D:\individualsRegister\individualsRegister\src\main\java\unisoft\ws\innfiodr\get\rq\package-info.java
+D:\individualsRegister\individualsRegister\src\main\java\com\individualsRegister\util\DateDeserializer.java
 D:\individualsRegister\individualsRegister\src\main\java\com\individualsRegister\convert\IConverter.java
 D:\individualsRegister\individualsRegister\src\main\java\ru\gosuslugi\smev\rev111111\HeaderType.java
 D:\individualsRegister\individualsRegister\src\main\java\unisoft\ws\innfiodr\query\rs\package-info.java

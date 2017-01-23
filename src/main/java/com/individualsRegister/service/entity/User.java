@@ -2,6 +2,13 @@ package com.individualsRegister.service.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.individualsRegister.util.DateDeserializer;
+import com.individualsRegister.util.DateSerializer;
+
+
+
 public class User
 {
 	private Integer id;
@@ -9,6 +16,11 @@ public class User
 	private String middleName;
 	private String lastName;
 	private String fnsId;
+	private String fnsidRequestId;
+
+
+	@JsonSerialize(using = DateSerializer.class)
+	 @JsonDeserialize(using = DateDeserializer.class)
 	private Date birthDate;
 
 	public String getFirstName()
@@ -69,5 +81,15 @@ public class User
 	public void setId(Integer id)
 	{
 		this.id = id;
+	}
+	
+	 public String getFnsidRequestId()
+	{
+		return fnsidRequestId;
+	}
+
+	public void setFnsidRequestId(String fnsidRequestId)
+	{
+		this.fnsidRequestId = fnsidRequestId;
 	}
 }

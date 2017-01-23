@@ -1,5 +1,7 @@
 package com.individualsRegister.convert.impl;
 
+import java.math.BigInteger;
+
 import org.springframework.stereotype.Component;
 
 import com.individualsRegister.convert.IConverter;
@@ -14,6 +16,7 @@ public class UserConverter implements IConverter<User, UserDO>
 	public UserDO convert(User source)
 	{
 		UserDO target = new UserDO();
+		target.setFnsidRequestId(new BigInteger(source.getFnsidRequestId()));
 		target.setBirthDate(source.getBirthDate());
 		target.setFirstName(source.getFirstName());
 		target.setId(source.getId());

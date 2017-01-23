@@ -6,6 +6,7 @@ com\individualsRegister\service\entity\User.class
 unisoft\ws\FNSINNFIODRSvc24.class
 com\individualsRegister\client\IFNSClient.class
 com\individualsRegister\dao\IDao.class
+com\individualsRegister\util\DateSerializer.class
 unisoft\ws\innfiodr\query\rq\Документ$СвФЛ.class
 com\individualsRegister\controller\IndividualsRegisterController.class
 ru\gosuslugi\smev\rev111111\GetType.class
@@ -31,6 +32,7 @@ ru\gosuslugi\smev\rev111111\StatusType.class
 unisoft\ws\innfiodr\get\rq\package-info.class
 ru\gosuslugi\smev\rev111111\BaseMessageType.class
 unisoft\ws\innfiodr\get\rs\ObjectFactory.class
+com\individualsRegister\util\DateDeserializer.class
 unisoft\ws\innfiodr\get\rs\Документ.class
 ru\gosuslugi\smev\rev111111\QueryType.class
 unisoft\ws\innfiodr\get\rs\package-info.class

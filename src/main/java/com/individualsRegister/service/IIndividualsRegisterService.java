@@ -1,6 +1,7 @@
 
 package com.individualsRegister.service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import com.individualsRegister.service.entity.User;
@@ -18,5 +19,7 @@ public interface IIndividualsRegisterService
 	public void deleteUser(Integer id);
 	
 	public boolean isUserExists(Integer id);
+	
+	public BigInteger initiateFSN(User user);
 
 }

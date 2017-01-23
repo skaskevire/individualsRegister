@@ -79,6 +79,67 @@ public class IndividualsRegisterService implements IIndividualsRegisterService
 	{		
 		return userDOConverter.convert(userDao.read(id));
 	}
+	
+	public BigInteger initiateFSN(User user)
+	{
+QueryType request = new QueryType();			
+		
+		
+		MessageType messageType = new MessageType();
+
+		
+		
+		OrgExternalType fnsR = new OrgExternalType();
+		fnsR.setCode("FNSR01001");
+		fnsR.setName("ФНС России");		
+		messageType.setSender(fnsR);
+		messageType.setRecipient(fnsR);
+		messageType.setOriginator(fnsR);
+		messageType.setTypeCode(TypeCodeType.GSRV);
+		messageType.setStatus(StatusType.REQUEST);
+		messageType.setExchangeType("2");
+		try
+		{
+			GregorianCalendar c = new GregorianCalendar();
+			c.setTime(new Date());
+			XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+			messageType.setDate(date);
+		}
+		catch (DatatypeConfigurationException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		request.setMessage(messageType);
+		
+		
+		
+MessageDataType mdt = new MessageDataType();
+		
+		AppDataType adt = new AppDataType();
+		
+		Документ документ = new Документ();
+		документ.setВерсФорм("4.01");
+		Документ.СвФЛ свФЛ = new Документ.СвФЛ();
+		свФЛ.setДатаРожд("12.07.1954");
+		свФЛ.setИмя("ПЕТР");
+		свФЛ.setФамилия("ЧАХЛОВ");
+		свФЛ.setОтчество("АЛЕКСЕЕВИЧ");
+		документ.setСвФЛ(свФЛ);
+		adt.getAny().add(документ);	
+		mdt.setAppData(adt);
+		request.setMessageData(mdt);
+		
+		BigInteger requestId = fnsClient.requestINNFLFIODR(request);
+		if(requestId == null)
+		{
+		//	throw new RuntimeException();
+		}
+		
+		
+		
+		return requestId;
+	}
 
 	@Override
 	public void createUser(User user)
@@ -131,21 +192,21 @@ MessageDataType mdt = new MessageDataType();
 		mdt.setAppData(adt);
 		request.setMessageData(mdt);
 		
-		BigInteger requestId = fnsClient.requestINNFLFIODR(request);
-		if(requestId == null)
-		{
-			throw new RuntimeException();
-		}
+		//BigInteger requestId = fnsClient.requestINNFLFIODR(request);
+		//if(requestId == null)
+		//{
+		//	throw new RuntimeException();
+		//}
 		
 		UserDO userDO = userConverter.convert(user);
-		userDO.setFnsidRequestId(requestId);
+		//userDO.setFnsidRequestId(requestId);
 		userDao.create(userDO);
 	}
 
 	@Override
 	public void updateUser(User user)
 	{
-		QueryType request = new QueryType();			
+		/*QueryType request = new QueryType();			
 		
 		MessageType messageType = new MessageType();
 		OrgExternalType fnsR = new OrgExternalType();
@@ -191,11 +252,11 @@ MessageDataType mdt = new MessageDataType();
 		BigInteger requestId = fnsClient.requestINNFLFIODR(request);
 		if(requestId == null)
 		{
-			throw new RuntimeException();
-		}
+			throw new RuntimeException();*/
+		//}
 		
 		UserDO userDO = userConverter.convert(user);
-		userDO.setFnsidRequestId(requestId);
+		//userDO.setFnsidRequestId(requestId);
 		userDao.update(userDO);
 	}
 

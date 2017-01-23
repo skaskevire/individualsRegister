@@ -2,13 +2,14 @@
  
 angular.module('myApp').controller('UserController', ['$scope', 'UserService', function($scope, UserService) {
     var self = this;
-    self.user={id:null,firstName:'',middleName:'',lastName:'',birthDate:'',fnsId:''};
+    self.user={id:null,firstName:'',middleName:'',lastName:'',birthDate:'',fnsId:0,fnsidRequestId:0};
     self.users=[];
  
     self.submit = submit;
     self.edit = edit;
     self.remove = remove;
     self.reset = reset;
+    self.initiateFSN = initiateFSN;
  
  
     listAllUsers();
@@ -54,6 +55,14 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
             }
         );
     }
+    
+    function initiateFSN(id){
+    	UserService.initiateFSN(id).then(listAllUsers,
+    			function(errResponse){
+            console.error('Error while requesting to FSN');
+        }	
+    	);
+    }
  
     function submit() {
         if(self.user.id===null){
@@ -70,7 +79,9 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
         console.log('id to be edited', id);
         for(var i = 0; i < self.users.length; i++){
             if(self.users[i].id === id) {
+            	
                 self.user = angular.copy(self.users[i]);
+                self.user.date = new Date(self.users[i].birthDate);
                 break;
             }
         }
@@ -86,7 +97,7 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
  
  
     function reset(){
-        self.user={id:null,firstName:'',middleName:'',lastName:'',birthDate:'',fnsId:''};
+        self.user={id:null,firstName:'',middleName:'',lastName:'',birthDate:'',fnsId:0,fnsidRequestId:0};
         $scope.myForm.$setPristine(); //reset Form
     }
  

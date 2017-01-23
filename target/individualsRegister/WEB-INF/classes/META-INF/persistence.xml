@@ -7,19 +7,19 @@
         <persistence:provider>org.hibernate.ejb.HibernatePersistence</persistence:provider>
         <persistence:properties>
             <persistence:property name="hibernate.connection.driver_class"
-                value="com.mysql.jdbc.Driver" />
+                value="org.postgresql.Driver" />
             <persistence:property name="hibernate.connection.password"
-                value="root" />
+                value="12345" />
             <persistence:property name="hibernate.connection.url"
-                value="jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=convertToNull" />
+                value="jdbc:postgresql://localhost:5433/test" />
             <persistence:property name="hibernate.connection.username"
-                value="root" />
+                value="postgres" />
             <persistence:property name="hibernate.dialect"
                 value="org.hibernate.dialect.MySQLDialect" />
                 <persistence:property name="hibernate.hbm2ddl.auto" value="create-drop"/>
 <persistence:property name="hibernate.show_sql" value="true"/>
   <persistence:property name="hibernate.format_sql" value="true"/>
-  <persistence:property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+  <persistence:property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
         </persistence:properties>
 
     </persistence:persistence-unit>

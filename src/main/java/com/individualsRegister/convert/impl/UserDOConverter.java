@@ -13,12 +13,20 @@ public class UserDOConverter implements IConverter<UserDO, User>
 	public User convert(UserDO source)
 	{
 		User target = new User();
-		target.setBirthDate(source.getBirthDate());
-		target.setFirstName(source.getFirstName());
-		target.setId(source.getId());
-		target.setFnsId(source.getFnsid());
-		target.setLastName(source.getLastName());
-		target.setMiddleName(source.getMiddleName());
+		if(source!=null)
+		{
+			if(source.getFnsidRequestId() != null)
+			{
+				target.setFnsidRequestId(source.getFnsidRequestId().toString());
+			}			
+			target.setBirthDate(source.getBirthDate());
+			target.setFirstName(source.getFirstName());
+			target.setId(source.getId());
+			target.setFnsId(source.getFnsid());
+			target.setLastName(source.getLastName());
+			target.setMiddleName(source.getMiddleName());
+		}
+
 		return target;
 	}
 

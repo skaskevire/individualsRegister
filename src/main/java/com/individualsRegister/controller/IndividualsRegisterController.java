@@ -2,6 +2,7 @@
 package com.individualsRegister.controller;
 
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,20 @@ public class IndividualsRegisterController
 		   currentUser.setFnsId(user.getFnsId());
 		   currentUser.setLastName(user.getLastName());
 		   currentUser.setMiddleName(user.getMiddleName());
+		   individualsRegisterService.updateUser(currentUser);
+		   return new ResponseEntity<User>(currentUser, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/user/initiateFSN/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<User> initiateFSN(@PathVariable("id") Integer id)
+	{
+		User currentUser = individualsRegisterService.getUser(id);
+		   if (currentUser==null) {
+	            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+	        }
+		   BigInteger requestID = individualsRegisterService.initiateFSN(currentUser);
+		   
+		   currentUser.setFnsidRequestId(requestID.toString());
 		   individualsRegisterService.updateUser(currentUser);
 		   return new ResponseEntity<User>(currentUser, HttpStatus.OK);
 	}

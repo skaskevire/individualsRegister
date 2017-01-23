@@ -8,6 +8,13 @@
   <classpathentry kind="var" path="M2_REPO/javax/servlet/jstl/1.2/jstl-1.2.jar"/>
   <classpathentry kind="var" path="M2_REPO/javax/validation/validation-api/1.1.0.CR1/validation-api-1.1.0.CR1.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="var" path="M2_REPO/org/postgresql/postgresql/9.4-1200-jdbc41/postgresql-9.4-1200-jdbc41.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/github/dblock/waffle/waffle-jna/1.7/waffle-jna-1.7.jar"/>
+  <classpathentry kind="var" path="M2_REPO/net/java/dev/jna/jna/4.1.0/jna-4.1.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/net/java/dev/jna/jna-platform/4.1.0/jna-platform-4.1.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.7.7/slf4j-api-1.7.7.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/guava/guava/18.0/guava-18.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-simple/1.7.7/slf4j-simple-1.7.7.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.3.0/jackson-core-2.3.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.3.0/jackson-databind-2.3.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.3.0/jackson-annotations-2.3.0.jar"/>

@@ -8,10 +8,26 @@ angular.module('myApp').factory('UserService', ['$http', '$q', function($http, $
     	listAllUsers: listAllUsers,
         createUser: createUser,
         updateUser:updateUser,
-        deleteUser:deleteUser
+        deleteUser:deleteUser,
+        initiateFSN:initiateFSN
     };
  
     return factory;
+    
+    function initiateFSN(id) {
+    	  var deferred = $q.defer();
+          $http.put(REST_SERVICE_URI+"initiateFSN/"+id)
+              .then(
+              function (response) {
+                  deferred.resolve(response.data);
+              },
+              function(errResponse){
+                  console.error('Error while updating User');
+                  deferred.reject(errResponse);
+              }
+          );
+          return deferred.promise;    	
+    }
  
     function listAllUsers() {
         var deferred = $q.defer();

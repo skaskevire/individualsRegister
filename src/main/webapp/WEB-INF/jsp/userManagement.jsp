@@ -41,7 +41,7 @@
                        
                         <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="middleName">Last Name</label>
+                              <label class="col-md-2 control-lable" for="middleName">Middle Name</label>
                               <div class="col-md-7">
                                   <input type="text" ng-model="ctrl.user.middleName" id="middleName" class="form-control input-sm" placeholder="Enter your middleName [This field is validation free]"/>
                               </div>
@@ -53,6 +53,21 @@
                               <label class="col-md-2 control-lable" for="lastName">Last Name</label>
                               <div class="col-md-7">
                                   <input type="text" ng-model="ctrl.user.lastName" id="lastName" class="form-control input-sm" placeholder="Enter your lastName [This field is validation free]"/>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      
+                     <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="birthDate">Birth Date (MM/YY/DDDD)</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.user.birthDate" ng-pattern="/(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d/" id="birthDate" class="form-control input-sm" placeholder="Enter your date of birth [This field is validation free]" required></input>
+                              		<div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.birthDate.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.birthDate.$error.pattern">You have inserted a wrong date</span>
+                                      <span ng-show="myForm.birthDate.$invalid">This field is invalid </span>
+                                  </div>
                               </div>
                           </div>
                       </div>
@@ -78,6 +93,8 @@
                               <th>First Name</th>
                               <th>Middle Name</th>
                               <th>Last Name</th>
+                              <th>Birth Date</th>
+                              <th>FSIN ID</th>
                               <th width="20%"></th>
                           </tr>
                       </thead>
@@ -87,8 +104,10 @@
                               <td><span ng-bind="u.firstName"></span></td>
                               <td><span ng-bind="u.middleName"></span></td>
                               <td><span ng-bind="u.lastName"></span></td>
+                               <td><span ng-bind="u.birthDate"></span></td>
+                                <td><span ng-if="u.fnsId == 0 && ( u.fnsidRequestId != 0 && u.fnsidRequestId != null )">REQUESTED</span><span ng-if="u.fnsId == 0 && (u.fnsidRequestId == 0 || u.fnsidRequestId == null)">NONE</span><span ng-if="u.fnsId != 0" ng-bind="u.fnsId"></span></td>
                               <td>
-                              <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button>
+                              <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button> <button ng-if="u.fnsidRequestId == 0 || u.fnsidRequestId == null" type="button" ng-click="ctrl.initiateFSN(u.id)" class="btn btn-danger custom-width">Initiate FSN</button>
                               </td>
                           </tr>
                       </tbody>
