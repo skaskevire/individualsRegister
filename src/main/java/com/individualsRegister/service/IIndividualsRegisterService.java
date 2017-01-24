@@ -6,6 +6,11 @@ import java.util.List;
 
 import com.individualsRegister.service.entity.User;
 
+/**
+ * Service layer for operations with user data
+ * 
+ * @author Raman Skaskevich
+ */
 public interface IIndividualsRegisterService
 {
 	public List<User> listAllUsers();
@@ -17,9 +22,9 @@ public interface IIndividualsRegisterService
 	public void updateUser(User user);
 
 	public void deleteUser(Integer id);
-	
+
 	public boolean isUserExists(Integer id);
-	
-	public BigInteger initiateFSN(User user);
+
+	public BigInteger requestINN(User user);
 
 }

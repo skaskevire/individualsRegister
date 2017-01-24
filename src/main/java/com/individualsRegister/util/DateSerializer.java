@@ -1,3 +1,4 @@
+
 package com.individualsRegister.util;
 
 import java.io.IOException;
@@ -11,15 +12,14 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 public class DateSerializer extends JsonSerializer<Date>
 {
-	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-	
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
 	@Override
-	public void serialize(Date date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)
-			throws IOException, JsonProcessingException
+	public void serialize(Date date, JsonGenerator jsonGenerator,
+			SerializerProvider serializerProvider) throws IOException, JsonProcessingException
 	{
 		String formattedDate = dateFormat.format(date);
-		jsonGenerator.writeString(formattedDate);		
+		jsonGenerator.writeString(formattedDate);
 	}
 
 }

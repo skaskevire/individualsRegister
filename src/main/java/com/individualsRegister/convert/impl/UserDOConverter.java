@@ -5,6 +5,13 @@ import org.springframework.stereotype.Component;
 import com.individualsRegister.convert.IConverter;
 import com.individualsRegister.dao.entity.UserDO;
 import com.individualsRegister.service.entity.User;
+
+
+/**
+ * Converts {@link UserDO} to {@link User}
+ * 
+ * @author Raman Skaskevich
+ * */
 @Component("userDOConverter")
 public class UserDOConverter implements IConverter<UserDO, User>
 {
@@ -15,14 +22,14 @@ public class UserDOConverter implements IConverter<UserDO, User>
 		User target = new User();
 		if(source!=null)
 		{
-			if(source.getFnsidRequestId() != null)
+			if(source.getInnRequestId() != null)
 			{
-				target.setFnsidRequestId(source.getFnsidRequestId().toString());
+				target.setInnRequestId(source.getInnRequestId().toString());
 			}			
 			target.setBirthDate(source.getBirthDate());
 			target.setFirstName(source.getFirstName());
 			target.setId(source.getId());
-			target.setFnsId(source.getFnsid());
+			target.setInn(source.getInn());
 			target.setLastName(source.getLastName());
 			target.setMiddleName(source.getMiddleName());
 		}

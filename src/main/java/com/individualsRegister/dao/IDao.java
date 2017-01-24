@@ -8,7 +8,7 @@ import com.individualsRegister.dao.entity.UserDO;
 /**
  * Dao interface
  * 
- * @author Raman_Skaskevich@epam.com	
+ * @author Raman Skaskevich	
  * */
 
 public interface IDao<T, K> {

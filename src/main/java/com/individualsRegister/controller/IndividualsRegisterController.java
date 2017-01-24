@@ -1,7 +1,6 @@
 
 package com.individualsRegister.controller;
 
-
 import java.math.BigInteger;
 import java.util.List;
 
@@ -20,6 +19,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.individualsRegister.service.IIndividualsRegisterService;
 import com.individualsRegister.service.entity.User;
 
+/**
+ * Controller class for user management operations
+ * 
+ * @author Raman Skaskevich
+ * */
 @Controller
 public class IndividualsRegisterController
 {
@@ -27,17 +31,24 @@ public class IndividualsRegisterController
 	@Qualifier("individualsRegisterService")
 	IIndividualsRegisterService individualsRegisterService;
 
+	
+	/**
+	 * Returns list of all users
+	 * 
+	 * @return ResponseEntity<List<User>>
+	 * */
 	@RequestMapping(value = "/user/", method = RequestMethod.GET)
 	public ResponseEntity<List<User>> listAllUsers()
 	{
 		List<User> users = individualsRegisterService.listAllUsers();
-		if (users.isEmpty())
-		{
-			return new ResponseEntity<List<User>>(HttpStatus.NOT_FOUND);
-		}
 		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	}
-
+	
+	/**
+	 * Returns user by id
+	 * 
+	 * @return ResponseEntity<User>
+	 * */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> getUser(@PathVariable("id") Integer id)
 	{
@@ -51,63 +62,99 @@ public class IndividualsRegisterController
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
+	/**
+	 * Creates user
+	 * 
+	 * @return ResponseEntity<Void>
+	 * */
 	@RequestMapping(value = "/user/", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder)
-	{       
+	{
 
-        if (individualsRegisterService.isUserExists(user.getId())) {
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }
-  
-       individualsRegisterService.createUser(user);
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+		if (individualsRegisterService.isUserExists(user.getId()))
+		{
+			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+		}
+
+		individualsRegisterService.createUser(user);
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
+	/**
+	 * Updates user
+	 * 
+	 * @return ResponseEntity<Void>
+	 * */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<User> updateUser(@PathVariable("id") Integer id, @RequestBody User user)
 	{
 		User currentUser = individualsRegisterService.getUser(id);
-		   if (currentUser==null) {
-	            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-	        }
-		   currentUser.setBirthDate(user.getBirthDate());   
-		   currentUser.setFirstName(user.getFirstName());
-		   currentUser.setFnsId(user.getFnsId());
-		   currentUser.setLastName(user.getLastName());
-		   currentUser.setMiddleName(user.getMiddleName());
-		   individualsRegisterService.updateUser(currentUser);
-		   return new ResponseEntity<User>(currentUser, HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "/user/initiateFSN/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<User> initiateFSN(@PathVariable("id") Integer id)
-	{
-		User currentUser = individualsRegisterService.getUser(id);
-		   if (currentUser==null) {
-	            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-	        }
-		   BigInteger requestID = individualsRegisterService.initiateFSN(currentUser);
-		   
-		   currentUser.setFnsidRequestId(requestID.toString());
-		   individualsRegisterService.updateUser(currentUser);
-		   return new ResponseEntity<User>(currentUser, HttpStatus.OK);
+		if (currentUser == null)
+		{
+			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+		}
+		mergeUserFields(currentUser, user);
+		individualsRegisterService.updateUser(currentUser);
+
+		return new ResponseEntity<User>(currentUser, HttpStatus.OK);
 	}
 
+	private void mergeUserFields(User userFromDatabase, User userFromRequest)
+	{
+		userFromDatabase.setBirthDate(userFromRequest.getBirthDate());
+		userFromDatabase.setFirstName(userFromRequest.getFirstName());
+		userFromDatabase.setInn(userFromRequest.getInn());
+		userFromDatabase.setLastName(userFromRequest.getLastName());
+		userFromDatabase.setMiddleName(userFromRequest.getMiddleName());
+	}
+
+	/**
+	 * Requests inn in FNS external service
+	 * 
+	 * @return ResponseEntity<User>
+	 * */
+	@RequestMapping(value = "/user/requestINN/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<User> requestINN(@PathVariable("id") Integer id)
+	{
+		User currentUser = individualsRegisterService.getUser(id);
+		if (currentUser == null)
+		{
+			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+		}
+		BigInteger requestID = individualsRegisterService.requestINN(currentUser);
+		currentUser.setInnRequestId(requestID.toString());
+		individualsRegisterService.updateUser(currentUser);
+
+		return new ResponseEntity<User>(currentUser, HttpStatus.OK);
+	}
+
+	/**
+	 * Removes user
+	 * 
+	 * @return ResponseEntity<User>
+	 * */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<User> deleteUser(@PathVariable("id") Integer id)
 	{
-        User user = individualsRegisterService.getUser(id);
-        if (user == null) {
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-        }
-  
-        individualsRegisterService.deleteUser(id);
-        return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+		User user = individualsRegisterService.getUser(id);
+		if (user == null)
+		{
+			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+		}
+		individualsRegisterService.deleteUser(id);
+
+		return new ResponseEntity<User>(HttpStatus.OK);
 	}
-	
+
+	/**
+	 * Redirects to user management page
+	 * 
+	 * @return ResponseEntity<User>
+	 * */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-     public String getIndexPage() {
-         return "userManagement";
-     }
+	public String getIndexPage()
+	{
+		return "userManagement";
+	}
 
 }

@@ -9,6 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * User dao layer entity
+ * 
+ * @author Raman Skaskevich
+ * */
 @Entity
 public class UserDO
 {
@@ -21,19 +26,19 @@ public class UserDO
 	private String middleName;
 	@Column(name = "lastName")
 	private String lastName;
-	@Column(name = "fnsid")
-	private String fnsid;
+	@Column(name = "inn")
+	private String inn;
 	@Column(name = "birthDate")
 	private Date birthDate;
-	@Column(name = "fnsidRequestId")
-	private BigInteger fnsidRequestId;
-	public BigInteger getFnsidRequestId()
+	@Column(name = "innRequestId")
+	private BigInteger innRequestId;
+	public BigInteger getInnRequestId()
 	{
-		return fnsidRequestId;
+		return innRequestId;
 	}
-	public void setFnsidRequestId(BigInteger fnsidRequestId)
+	public void setInnRequestId(BigInteger innRequestId)
 	{
-		this.fnsidRequestId = fnsidRequestId;
+		this.innRequestId = innRequestId;
 	}
 	public Integer getId()
 	{
@@ -67,13 +72,13 @@ public class UserDO
 	{
 		this.lastName = lastName;
 	}
-	public String getFnsid()
+	public String getInn()
 	{
-		return fnsid;
+		return inn;
 	}
-	public void setFnsid(String fnsid)
+	public void setInn(String inn)
 	{
-		this.fnsid = fnsid;
+		this.inn = inn;
 	}
 	public Date getBirthDate()
 	{

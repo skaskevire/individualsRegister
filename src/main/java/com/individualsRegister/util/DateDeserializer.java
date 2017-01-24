@@ -5,15 +5,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.individualsRegister.exception.IndividualRegisterExceptionEnum;
 
 public class DateDeserializer extends JsonDeserializer<Date>
 {
-	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-	
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+	private static final Logger LOGGER = LoggerFactory.getLogger(DateDeserializer.class);
 
 
 	@Override
@@ -26,8 +30,8 @@ public class DateDeserializer extends JsonDeserializer<Date>
 		}
 		catch (ParseException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(),e);
+			IndividualRegisterExceptionEnum.INVALID_DATE_FORMAT.raise(e);
 		}
 		
 		return null;

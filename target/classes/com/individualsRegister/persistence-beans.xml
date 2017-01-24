@@ -11,17 +11,17 @@
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" />
-		
-			<bean
+
+	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
-		
-		<bean class="org.springframework.orm.jpa.JpaTransactionManager"
+
+	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
 		id="transactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>	
+	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	
-	
-	<bean id="userDao"  class="com.individualsRegister.dao.impl.UserDao"></bean>
-	
+
+
+	<bean id="userDao" class="com.individualsRegister.dao.impl.UserDao"></bean>
+
 </beans>

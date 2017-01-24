@@ -1,0 +1,65 @@
+.username.ng-valid {
+	background-color: lightgreen;
+}
+
+.username.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.username.ng-dirty.ng-invalid-minlength {
+	background-color: yellow;
+}
+.username.ng-dirty.ng-invalid-maxlength {
+	background-color: yellow;
+}
+
+
+
+
+.c_middlename.ng-valid {
+	background-color: lightgreen;
+}
+
+.c_middlename.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.c_middlename.ng-dirty.ng-invalid-minlength {
+	background-color: yellow;
+}
+.c_middlename.ng-dirty.ng-invalid-maxlength {
+	background-color: yellow;
+}
+
+
+
+.c_lastname.ng-valid {
+	background-color: lightgreen;
+}
+
+.c_lastname.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.c_lastname.ng-dirty.ng-invalid-minlength {
+	background-color: yellow;
+}
+.c_lastname.ng-dirty.ng-invalid-maxlength {
+	background-color: yellow;
+}
+
+.c_birthdate {
+	width:140px;
+}
+
+.c_birthdate.ng-valid {
+	background-color: lightgreen;
+}
+
+.c_birthdate.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.c_birthdate.ng-invalid-pattern {
+	background-color: yellow;
+}

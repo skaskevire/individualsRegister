@@ -58,10 +58,10 @@
 	
 	
 	
-	 <task:scheduler id="fnsIdUpdateScheduler" pool-size="2" />
+	 <task:scheduler id="innUpdateScheduler" pool-size="2" />
      
-    <task:scheduled-tasks scheduler="fnsIdUpdateScheduler">
-        <task:scheduled ref="fnsIdUpdateJob" method="updateFnsIds"
+    <task:scheduled-tasks scheduler="innUpdateScheduler">
+        <task:scheduled ref="innUpdateJob" method="updateInns"
             cron="0 2/5 * * * *"/>
     </task:scheduled-tasks>
 </beans>

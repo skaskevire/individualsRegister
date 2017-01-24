@@ -7,18 +7,19 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.individualsRegister.util.DateDeserializer;
 import com.individualsRegister.util.DateSerializer;
 
-
-
+/**
+ * User entity
+ * 
+ * @author Raman Skaskevich
+ * */
 public class User
 {
 	private Integer id;
 	private String firstName;
 	private String middleName;
 	private String lastName;
-	private String fnsId;
-	private String fnsidRequestId;
-
-
+	private String inn;
+	private String innRequestId;
 	@JsonSerialize(using = DateSerializer.class)
 	 @JsonDeserialize(using = DateDeserializer.class)
 	private Date birthDate;
@@ -53,14 +54,14 @@ public class User
 		this.lastName = lastName;
 	}
 
-	public String getFnsId()
+	public String getInn()
 	{
-		return fnsId;
+		return inn;
 	}
 
-	public void setFnsId(String fnsId)
+	public void setInn(String inn)
 	{
-		this.fnsId = fnsId;
+		this.inn = inn;
 	}
 
 	public Date getBirthDate()
@@ -83,13 +84,13 @@ public class User
 		this.id = id;
 	}
 	
-	 public String getFnsidRequestId()
+	 public String getInnRequestId()
 	{
-		return fnsidRequestId;
+		return innRequestId;
 	}
 
-	public void setFnsidRequestId(String fnsidRequestId)
+	public void setInnRequestId(String innRequestId)
 	{
-		this.fnsidRequestId = fnsidRequestId;
+		this.innRequestId = innRequestId;
 	}
 }

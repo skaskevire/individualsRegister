@@ -1,3 +1,4 @@
+
 package com.individualsRegister.convert.impl;
 
 import java.math.BigInteger;
@@ -8,6 +9,12 @@ import com.individualsRegister.convert.IConverter;
 import com.individualsRegister.dao.entity.UserDO;
 import com.individualsRegister.service.entity.User;
 
+
+/**
+ * Converts {@link User} to {@link UserDO}
+ * 
+ * @author Raman Skaskevich
+ * */
 @Component("userConverter")
 public class UserConverter implements IConverter<User, UserDO>
 {
@@ -16,11 +23,14 @@ public class UserConverter implements IConverter<User, UserDO>
 	public UserDO convert(User source)
 	{
 		UserDO target = new UserDO();
-		target.setFnsidRequestId(new BigInteger(source.getFnsidRequestId()));
+		if(source.getInnRequestId() != null)
+		{
+			target.setInnRequestId(new BigInteger(source.getInnRequestId()));
+		}
 		target.setBirthDate(source.getBirthDate());
 		target.setFirstName(source.getFirstName());
 		target.setId(source.getId());
-		target.setFnsid(source.getFnsId());
+		target.setInn(source.getInn());
 		target.setLastName(source.getLastName());
 		target.setMiddleName(source.getMiddleName());
 		return target;

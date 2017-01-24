@@ -1,6 +1,6 @@
 'use strict';
  
-angular.module('myApp').factory('UserService', ['$http', '$q', function($http, $q){
+angular.module('individualRegisterServiceApplication').factory('UserService', ['$http', '$q', function($http, $q){
  
     var REST_SERVICE_URI = 'http://localhost:58908/individualsRegister/user/';
  
@@ -9,14 +9,14 @@ angular.module('myApp').factory('UserService', ['$http', '$q', function($http, $
         createUser: createUser,
         updateUser:updateUser,
         deleteUser:deleteUser,
-        initiateFSN:initiateFSN
+        requestINN:requestINN
     };
  
     return factory;
     
-    function initiateFSN(id) {
+    function requestINN(id) {
     	  var deferred = $q.defer();
-          $http.put(REST_SERVICE_URI+"initiateFSN/"+id)
+          $http.put(REST_SERVICE_URI+"requestINN/"+id)
               .then(
               function (response) {
                   deferred.resolve(response.data);

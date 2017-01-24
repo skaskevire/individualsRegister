@@ -1,15 +1,15 @@
 'use strict';
  
-angular.module('myApp').controller('UserController', ['$scope', 'UserService', function($scope, UserService) {
+angular.module('individualRegisterServiceApplication').controller('UserController', ['$scope', 'UserService', function($scope, UserService) {
     var self = this;
-    self.user={id:null,firstName:'',middleName:'',lastName:'',birthDate:'',fnsId:0,fnsidRequestId:0};
+    self.user={id:null,firstName:'',middleName:'',lastName:'',birthDate:'',inn:0,innRequestId:0};
     self.users=[];
  
     self.submit = submit;
     self.edit = edit;
     self.remove = remove;
     self.reset = reset;
-    self.initiateFSN = initiateFSN;
+    self.requestINN = requestINN;
  
  
     listAllUsers();
@@ -56,10 +56,10 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
         );
     }
     
-    function initiateFSN(id){
-    	UserService.initiateFSN(id).then(listAllUsers,
+    function requestINN(id){
+    	UserService.requestINN(id).then(listAllUsers,
     			function(errResponse){
-            console.error('Error while requesting to FSN');
+            console.error('Error while requesting for INN');
         }	
     	);
     }
@@ -81,7 +81,7 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
             if(self.users[i].id === id) {
             	
                 self.user = angular.copy(self.users[i]);
-              //  self.user.date = new Date(self.users[i].birthDate);
+               self.user.birthDate = new Date(self.users[i].birthDate);
                 break;
             }
         }
@@ -97,7 +97,7 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
  
  
     function reset(){
-        self.user={id:null,firstName:'',middleName:'',lastName:'',birthDate:'',fnsId:0,fnsidRequestId:0};
+        self.user={id:null,firstName:'',middleName:'',lastName:'',birthDate:'',inn:0,innRequestId:0};
         $scope.myForm.$setPristine(); //reset Form
     }
  
